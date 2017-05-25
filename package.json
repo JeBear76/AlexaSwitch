@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/JeBear76/AlexaSwitch/issues"
   },
-  "homepage": "https://github.com/JeBear76/AlexaSwitch#readme"
+  "homepage": "https://github.com/JeBear76/AlexaSwitch#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "rpi-gpio": "^0.8.1"
+  }
 }
