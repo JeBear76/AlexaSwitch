@@ -35,15 +35,18 @@ function updateShiftRegister()
 {
     console.log(switches);
     gpio.write(latchPin, false);
+    console.log("latchPin false");
     tick(clockPin);
-    gpio.write(latchPin, true);
     shiftOut(dataPin, clockPin, switches);
+    gpio.write(latchPin, true);
+    console.log("latchPin true");
 }
 
 function shiftOut(dataPin, clockPin, switches){
     tick(clockPin);
     switches.forEach(function(element) {
         gpio.write(dataPin, element);
+        console.log("dataPin " + element);
         setTimeout(function(clockPin){
             tick(clockPin);
         },1);
@@ -52,7 +55,9 @@ function shiftOut(dataPin, clockPin, switches){
 
 function tick(clockPin){
     gpio.write(clockPin, true);
+    console.log("clockPin true");
     setTimeout(function(clockPin){
         gpio.write(clockPin, false);
+        console.log("clockPin false");
     },1);
 }
