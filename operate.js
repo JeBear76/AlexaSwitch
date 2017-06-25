@@ -32,7 +32,7 @@ function shiftOut(){
 
 function tick(clockPin){
     gpio.write(clockPin, true);
-    setTimeout((clockPin) => {
+    setTimeout(function(clockPin){
         gpio.write(clockPin, false);
     },0);
 }
