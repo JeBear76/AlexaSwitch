@@ -44,13 +44,14 @@ function updateShiftRegister()
 
 function shiftOut(dataPin, clockPin, switches){
     tick(clockPin);
-    switches.forEach(function(element) {
+    for (var i = 0; i < switches.length; i++) {
+        var element = switches[i];
         gpio.write(dataPin, element);
         console.log("dataPin " + element);
         setTimeout(function(clockPin){
             tick(clockPin);
         },1);
-    }, this);
+    }
 }
 
 function tick(clockPin){
