@@ -7,7 +7,7 @@ app.get('/operate', function (req, res){
     var switchposition = req.query['switchposition'];
 
     try {
-        operate(pin, switchposition);
+        operate(switchposition);
         res.end("pin " + pin + " set to " + switchposition);
     } catch (error) {
         res.end(error);
