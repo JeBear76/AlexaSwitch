@@ -5,23 +5,39 @@ var dataPin = 22;
 var switches = [false,false, false, false, false, false, false, false];
 
 gpio.setMode(gpio.MODE_BCM);
-gpio.setup(latchPin, gpio.DIR_HIGH, null);
-gpio.setup(clockPin, gpio.DIR_LOW, null);
-gpio.setup(dataPin, gpio.DIR_LOW, null);
+gpio.setup(latchPin, gpio.DIR_OUT, function(){
+    gpio.write(latchPin, true, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+});
+gpio.setup(clockPin, gpio.DIR_OUT, function(){
+    gpio.write(latchPin, false, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+});
+gpio.setup(dataPin, gpio.DIR_OUT, function(){
+    gpio.write(latchPin, false, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+});
 
 exports.operate = function(switchposition){
     for (var index = 0; index < switches.length; index++) {
         switches[index] = ((Math.pow(2, index) & switchposition) === Math.pow(2, index));        
     }
-    console.log(switches);
     updateShiftRegister();
 }
  
 function updateShiftRegister()
 {
-   gpio.write(latchPin, true);
-   shiftOut(dataPin, clockPin, switches);
-   gpio.write(latchPin, false);
+    console.log(switches);
+    gpio.write(latchPin, false);
+    tick(clockPin);
+    gpio.write(latchPin, true);
+    shiftOut(dataPin, clockPin, switches);
 }
 
 function shiftOut(dataPin, clockPin, switches){
