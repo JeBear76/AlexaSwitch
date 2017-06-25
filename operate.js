@@ -36,5 +36,5 @@ function tick(clockPin){
     gpio.write(clockPin, true);
     setTimeout(function(clockPin){
         gpio.write(clockPin, false);
-    },1);
+    },0);
 }
