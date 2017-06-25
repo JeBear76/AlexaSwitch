@@ -12,13 +12,13 @@ gpio.setup(latchPin, gpio.DIR_OUT, function(){
     });
 });
 gpio.setup(clockPin, gpio.DIR_OUT, function(){
-    gpio.write(latchPin, false, function(err) {
+    gpio.write(clockPin, false, function(err) {
         if (err) throw err;
         console.log('Written to pin');
     });
 });
 gpio.setup(dataPin, gpio.DIR_OUT, function(){
-    gpio.write(latchPin, false, function(err) {
+    gpio.write(dataPin, false, function(err) {
         if (err) throw err;
         console.log('Written to pin');
     });
