@@ -48,17 +48,13 @@ function shiftOut(dataPin, clockPin, switches){
         var element = switches[i];
         gpio.write(dataPin, element);
         console.log("dataPin " + element);
-        setTimeout(function(clockPin){
-            tick(clockPin);
-        },1);
+        tick(clockPin);
     }
 }
 
 function tick(clockPin){
     gpio.write(clockPin, true);
     console.log("clockPin true");
-    setTimeout(function(clockPin){
-        gpio.write(clockPin, false);
-        console.log("clockPin false");
-    },1);
+    gpio.write(clockPin, false);
+    console.log("clockPin false");
 }
