@@ -13,14 +13,15 @@ exports.operate = function(switchposition){
     for (var index = 0; index < switches.length; index++) {
         switches[index] = ((Math.pow(2, index) & switchposition) === Math.pow(2, index));        
     }
+    console.log(switches);
     updateShiftRegister();
 }
  
 function updateShiftRegister()
 {
-   gpio.write(latchPin, LOW);
+   gpio.write(latchPin, false);
    shiftOut(dataPin, clockPin, switches);
-   gpio.write(latchPin, HIGH);
+   gpio.write(latchPin, true);
 }
 
 function shiftOut(dataPin, clockPin, switches){
