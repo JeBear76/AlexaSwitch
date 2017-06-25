@@ -26,7 +26,7 @@ gpio.setup(dataPin, gpio.DIR_OUT, function(){
 
 exports.operate = function(switchposition){
     for (var index = 0; index < switches.length; index++) {
-        switches[index] = ((Math.pow(2, index) & switchposition) === Math.pow(2, index));        
+        switches[index] = !((Math.pow(2, index) & switchposition) === Math.pow(2, index));        
     }
     updateShiftRegister();
 }
