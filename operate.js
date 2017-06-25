@@ -19,9 +19,9 @@ exports.operate = function(switchposition){
  
 function updateShiftRegister()
 {
-   gpio.write(latchPin, false);
-   shiftOut(dataPin, clockPin, switches);
    gpio.write(latchPin, true);
+   shiftOut(dataPin, clockPin, switches);
+   gpio.write(latchPin, false);
 }
 
 function shiftOut(dataPin, clockPin, switches){
