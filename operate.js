@@ -44,7 +44,9 @@ function shiftOut(dataPin, clockPin, switches){
     tick(clockPin);
     switches.forEach(function(element) {
         gpio.write(dataPin, element);
-        tick(clockPin);
+        setTimeout(function(clockPin){
+            tick(clockPin);
+        },1);
     }, this);
 }
 
@@ -52,5 +54,5 @@ function tick(clockPin){
     gpio.write(clockPin, true);
     setTimeout(function(clockPin){
         gpio.write(clockPin, false);
-    },0);
+    },1);
 }
