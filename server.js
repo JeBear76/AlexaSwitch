@@ -10,7 +10,7 @@ app.get('/operate', function (req, res){
         operate(switchposition);
         res.end("the code got here alright!");
     } catch (error) {
-        res.end(error);
+        res.end("Big fat error!");
     }    
 })
 
